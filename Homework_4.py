@@ -64,13 +64,13 @@ print(my_str_list)
 # которые больше суммы двух своих соседей (слева и справа), и НАПЕЧАТАЙТЕ КОЛИЧЕСТВО таких элементов.
 # Крайние элементы списка никогда не учитываются, поскольку у них недостаточно соседей.
 # Для списка [2,4,1,5,3,9,0,7] ответом будет 3 потому что 4 > 2+1, 5 > 1+3, 9>3+0.
-list_of_numbers = [2,4,1,5,3,9,0,7]
+list_of_numbers = [2,4,1,5,7,3,9,0,7,1,2,0]
 number_of_elements = 0
+index = 0
 for num in list_of_numbers[1:-1]:
-    previous_number = list_of_numbers.index(num) - 1
-    next_number = list_of_numbers.index(num) + 1
-    if num > (list_of_numbers[previous_number] + list_of_numbers[next_number]):
+    if num > list_of_numbers[index] + list_of_numbers[index + 2]:
         number_of_elements += 1
+    index += 1
 print(number_of_elements)
 # 10. Дан список my_list в котором могут быть как строки (type str) так и целые числа (type int).
 # Например [1, 2, 3, "11", "22", 33]
@@ -84,10 +84,7 @@ print(my_only_str_list)
 # 11. Дана строка my_str. Создать список в который поместить те символы из my_str,
 # которые встречаются в строке ТОЛЬКО ОДИН раз.
 my_string = "111123333344445666666667789999999999AAAAa£££££$QQQQq"
-my_another_list = []
-for symbols in my_string:
-    if list(my_string).count(symbols) == 1:
-        my_another_list += symbols
+my_another_list = [the_symbol for the_symbol in set(my_string) if my_string.count(the_symbol) == 1]
 print(my_another_list)
 # 12. Даны две строки. Создать список в который поместить те символы,
 # которые есть в обеих строках хотя бы раз.
@@ -98,13 +95,6 @@ print(intersection)
 # 13. Даны две строки. Создать список в который поместить те символы, которые есть в обеих строках,
 # но в каждой ТОЛЬКО ПО ОДНОМУ разу.
 # Пример: для строк "aaaasdf1" и "asdfff2" ответ ["s", "d"], т.к. эти символы есть в каждой строке по одному разу
-the_list_of_uniques_1 = []
-the_list_of_uniques_2 = []
-for unique_char_1 in my_string_1:
-    if list(my_string_1).count(unique_char_1) == 1:
-        the_list_of_uniques_1 += unique_char_1
-for unique_char_2 in my_string_2:
-    if list(my_string_1).count(unique_char_2) == 1:
-        the_list_of_uniques_2 += unique_char_2
-intersection_of_uniques = list(set(the_list_of_uniques_1).intersection(set(the_list_of_uniques_2)))
+two_strings_list = list(my_string_1 + my_string_2)
+intersection_of_uniques = [unique_symbol for unique_symbol in intersection if two_strings_list.count(unique_symbol) == 2]
 print(intersection_of_uniques)
